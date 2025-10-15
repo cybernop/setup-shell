@@ -7,13 +7,13 @@ STARSHIP_CONFIG=https://raw.githubusercontent.com/cybernop/setup-shell/refs/head
 echo Install fish and starship
 
 # MacOS
-which brew 2>&1 > /dev/null
+which brew > /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
     brew install fish starship
 
 else
     # Alpine
-    which apk 2>&1 > /dev/null
+    which apk > /dev/null 2>&1
     if [[ $? -eq 0 ]]; then
         sudo apk add fish starship
 
@@ -55,7 +55,13 @@ fi
 
 # Copy starship config
 echo Copy starship config
-curl -L "$STARSHIP_CONFIG" -o "$HOME/.config/starship.toml"
+curl -sSL "$STARSHIP_CONFIG" -o "$HOME/.config/starship.toml"
+
+if [[ "$?" -ne 0 ]]; then
+    echo failed to download starship config
+    exit 1
+
+fi
 
 # Enable Starship in fish config
 fish_config="$HOME/.config/fish/config.fish"
