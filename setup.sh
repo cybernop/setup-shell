@@ -70,3 +70,5 @@ else
     echo Starfish already set to be loaded
 
 fi
+
+echo setup done
