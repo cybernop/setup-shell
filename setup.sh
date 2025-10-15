@@ -32,7 +32,7 @@ fi
 fish_path=$(which fish)
 if [[ -z "$(grep "^${fish_path}\$" /etc/shells)" ]]; then
     echo Add fish to list of shells
-    echo "${fish_path}" | sudo tee -a /etc/shells
+    sudo echo "${fish_path}" >> /etc/shells
 
 else
     echo fish is already in the list of shells
@@ -68,9 +68,9 @@ fish_config="$HOME/.config/fish/config.fish"
 if [[ ! -f "$fish_config" ]] || [[ -z "$(grep "^starship init fish | source\$" "$fish_config")" ]]; then
     echo Set starfish to be loaded
     mkdir -p "$HOME/.config/fish"
-    echo "" | tee -a "$fish_config"
-    echo "# Enable Starship prompt" | tee -a "$fish_config"
-    echo "starship init fish | source" | tee -a "$fish_config"
+    echo "" >> "$fish_config"
+    echo "# Enable Starship prompt" >> "$fish_config"
+    echo "starship init fish | source" >> "$fish_config"
 
 else
     echo Starfish already set to be loaded
