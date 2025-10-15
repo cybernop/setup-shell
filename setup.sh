@@ -55,18 +55,16 @@ fi
 
 # Copy starship config
 echo Copy starship config
-curl -L "$STARSHIP_CONFIG" -o "$HOME/.config/starship.toml" > /dev/null
+curl -L "$STARSHIP_CONFIG" -o "$HOME/.config/starship.toml"
 
 # Enable Starship in fish config
 fish_config="$HOME/.config/fish/config.fish"
 if [[ ! -f "$fish_config" ]] || [[ -z "$(grep "^starship init fish | source\$" "$fish_config")" ]]; then
     echo Set starfish to be loaded
     mkdir -p "$HOME/.config/fish"
-    cat << 'EOF' | tee -a "$fish_config"
-
-# Enable Starship prompt
-starship init fish | source
-EOF
+    echo "" | tee -a "$fish_config"
+    echo "# Enable Starship prompt" | tee -a "$fish_config"
+    echo "starship init fish | source" | tee -a "$fish_config"
 
 else
     echo Starfish already set to be loaded
