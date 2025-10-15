@@ -7,13 +7,13 @@ STARSHIP_CONFIG=https://raw.githubusercontent.com/cybernop/setup-shell/refs/head
 echo Install fish and starship
 
 # MacOS
-which brew > /dev/null
+which brew 2>&1 > /dev/null
 if [[ $? -eq 0 ]]; then
     brew install fish starship
 
 else
     # Alpine
-    which apk > /dev/null
+    which apk 2>&1 > /dev/null
     if [[ $? -eq 0 ]]; then
         sudo apk add fish starship
 
