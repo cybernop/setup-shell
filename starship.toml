@@ -1,0 +1,13 @@
+[custom.sushi]
+command = "echo $(sushi --version | sed -nE 's/SUSHI v([\\.0-9]+).*/\\1/p')"
+files = ["sushi-config.yaml"]
+style = "bright-red"
+symbol = "🍣 "
+when = """ command -v sushi &> /dev/null; exit (echo $?); """
+
+[custom.igpub]
+command = "echo $(java -jar input-cache/publisher.jar -v)"
+files = ["sushi-config.yaml"]
+style = "bright-red"
+symbol = "🔥 "
+when = """ command -v java -jar input-cache/publisher.jar &> /dev/null; exit (echo $?); """

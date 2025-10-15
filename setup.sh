@@ -1,9 +1,9 @@
 #!/bin/bash
-
+STARSHIP_CONFIG=https://raw.githubusercontent.com/cybernop/setup-shell/refs/heads/main/starship.toml
 
 ###
 # Install fish and starship
-##
+###
 echo Install fish and starship
 
 # MacOS
@@ -25,6 +25,9 @@ else
 
 fi
 
+###
+# Setup shell
+###
 # Add to list of shells
 fish_path=$(which fish)
 if [[ -z "$(grep "^${fish_path}\$" /etc/shells)" ]]; then
@@ -45,6 +48,14 @@ else
     echo fish is already the default shell
 
 fi
+
+###
+# Setup starship
+###
+
+# Copy starship config
+echo Copy starship config
+curl -L "$STARSHIP_CONFIG" -o "$HOME/.config/starship.toml"
 
 # Enable Starship in fish config
 fish_config="$HOME/.config/fish/config.fish"
