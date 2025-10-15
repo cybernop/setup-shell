@@ -61,7 +61,7 @@ curl -L "$STARSHIP_CONFIG" -o "$HOME/.config/starship.toml"
 fish_config="$HOME/.config/fish/config.fish"
 if [[ -z "$(grep "^starship init fish | source\$" "$fish_config")" ]]; then
     echo Set starfish to be loaded
-    touch -m "$fish_config"
+    mkdir -p "$HOME/.config/fish"
     cat << 'EOF' | tee -a "$fish_config"
 
 # Enable Starship prompt
