@@ -50,6 +50,29 @@ else
 fi
 
 ###
+# NeoVIM
+###
+
+# MacOS
+which brew > /dev/null 2>&1
+if [[ $? -eq 0 ]]; then
+    brew install neovim
+
+else
+    # Alpine
+    which apk > /dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        sudo apk add neovim
+
+    else
+        echo Not configured for this environment
+        exit 1
+
+    fi
+
+fi
+
+###
 # Setup starship
 ###
 
